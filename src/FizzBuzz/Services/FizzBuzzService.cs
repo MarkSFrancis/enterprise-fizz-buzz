@@ -89,7 +89,7 @@ namespace FizzBuzz.Services
             {
                 if (number % stringReplacement.Key == 0)
                 {
-                    replacement.Append(stringReplacement.Value ?? string.Empty);
+                    replacement.Append(stringReplacement.Value);
                     hasReplacement = true;
                 }
             }
