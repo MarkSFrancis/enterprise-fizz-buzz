@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace FizzBuzz.DependancyInjection
+namespace FizzBuzz.DependencyInjection
 {
     internal class RegisteredInstance
     {

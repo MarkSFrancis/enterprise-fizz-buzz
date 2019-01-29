@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FizzBuzz.DependancyInjection
+namespace FizzBuzz.DependencyInjection
 {
     internal class TypeActivator
     {

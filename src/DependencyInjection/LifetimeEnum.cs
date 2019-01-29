@@ -1,4 +1,4 @@
-﻿namespace FizzBuzz.DependancyInjection
+﻿namespace FizzBuzz.DependencyInjection
 {
     public enum Lifetime
     {

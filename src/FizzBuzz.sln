@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28516.95
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzz", "FizzBuzz\FizzBuzz.csproj", "{44401DEC-5F52-4A42-8D6D-0A4563F19B5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz", "FizzBuzz\FizzBuzz.csproj", "{44401DEC-5F52-4A42-8D6D-0A4563F19B5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzz.Console", "Console\FizzBuzz.Console\FizzBuzz.Console.csproj", "{5A889BA2-3DED-4825-A839-CDD7150DE8A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Console", "Console\FizzBuzz.Console.csproj", "{5A889BA2-3DED-4825-A839-CDD7150DE8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependancyInjection", "DependancyInjection\DependancyInjection\DependancyInjection.csproj", "{6B12FC3D-3719-498A-86B0-ACD91E7228AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependencyInjection", "DependencyInjection\FizzBuzz.DependencyInjection.csproj", "{6B12FC3D-3719-498A-86B0-ACD91E7228AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
