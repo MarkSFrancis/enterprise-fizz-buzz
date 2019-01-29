@@ -22,10 +22,33 @@ namespace FizzBuzz.Services
 
         public FizzBuzzService(IDictionary<int, string> stringReplacementsSettings)
         {
-            StringReplacementsSettings = stringReplacementsSettings.OrderBy(s => s.Key);
+            if (stringReplacementsSettings is null)
+            {
+                throw new ArgumentNullException(nameof(stringReplacementsSettings));
+            }
+
+            var replacementsInOrder = new List<KeyValuePair<int, string>>(stringReplacementsSettings.Count);
+
+            stringReplacementsSettings.Select(s =>
+            {
+                if (s.Key < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(stringReplacementsSettings), $"{nameof(stringReplacementsSettings)} cannot have a key less than zero for any entries");
+                }
+                if (s.Value is null)
+                {
+                    throw new ArgumentNullException(nameof(stringReplacementsSettings), $"{nameof(stringReplacementsSettings)} cannot have a null value for any entries");
+                }
+
+                return s;
+            })
+            .OrderBy(s => s.Key)
+            .ToList();
+
+            StringReplacementsSettings = replacementsInOrder;
         }
 
-        public IOrderedEnumerable<KeyValuePair<int, string>> StringReplacementsSettings { get; }
+        public IEnumerable<KeyValuePair<int, string>> StringReplacementsSettings { get; }
 
         /// <summary>
         /// Replaces each number with its modulus from the <see cref="StringReplacementsSettings"/> indefinitely, starting at <paramref name="startAt"/>
@@ -66,7 +89,7 @@ namespace FizzBuzz.Services
             {
                 if (number % stringReplacement.Key == 0)
                 {
-                    replacement.Append(stringReplacement.Value);
+                    replacement.Append(stringReplacement.Value ?? string.Empty);
                     hasReplacement = true;
                 }
             }
