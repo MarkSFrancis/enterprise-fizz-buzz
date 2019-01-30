@@ -1,5 +1,5 @@
 ﻿using FizzBuzz.DependencyInjection.Helpers;
-using FizzBuzz.DependencyInjection.Tests.Services;
+using FizzBuzz.DependencyInjection.Tests.Fakes.Services;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

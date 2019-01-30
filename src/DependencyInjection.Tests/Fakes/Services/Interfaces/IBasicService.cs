@@ -1,4 +1,4 @@
-﻿namespace FizzBuzz.DependencyInjection.Tests.Services
+﻿namespace FizzBuzz.DependencyInjection.Tests.Fakes.Services
 {
     public interface IBasicService
     {

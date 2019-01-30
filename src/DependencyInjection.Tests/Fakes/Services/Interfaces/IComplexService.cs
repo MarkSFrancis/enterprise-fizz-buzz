@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace FizzBuzz.DependencyInjection.Tests.Services
+namespace FizzBuzz.DependencyInjection.Tests.Fakes.Services
 {
     public interface IComplexService
     {
