@@ -1,4 +1,5 @@
-﻿using FizzBuzz.DependencyInjection.Helpers;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using FizzBuzz.DependencyInjection.Helpers;
 using FizzBuzz.DependencyInjection.Tests.Fakes.Services;
 using NUnit.Framework;
 using System;
@@ -20,6 +21,7 @@ namespace FizzBuzz.DependencyInjection.Tests
             container.AddSingleton<IMediumComplexityService, MediumComplexityService>();
             container.AddTransient<IComplexService, ComplexService>();
             container.AddTransient<Stream, MemoryStream>(factory => new MemoryStream());
+            container.AddTransient(typeof(GenericService<>));
 
             IDictionary<Type, RegisteredType> settings = container.ExportSettings();
 
@@ -102,6 +104,14 @@ namespace FizzBuzz.DependencyInjection.Tests
 
             Assert.AreEqual(instance1.InstanceId, instance2.InstanceId);
             Assert.AreEqual(instance2.InstanceId, instance3.InstanceId);
+        }
+
+        [Test]
+        public void GetGeneric_WithTypeInferredAtRuntime_LoadsGeneric()
+        {
+            var instance = DefaultFactory.Get<GenericService<string>>();
+
+            Assert.IsInstanceOf<GenericService<string>>(instance);
         }
     }
 }

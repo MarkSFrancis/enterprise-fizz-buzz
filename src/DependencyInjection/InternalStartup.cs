@@ -1,4 +1,6 @@
-﻿using FizzBuzz.Services;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using FizzBuzz.Logs.Extensions;
+using FizzBuzz.Services;
 
 namespace FizzBuzz.DependencyInjection
 {
@@ -9,6 +11,7 @@ namespace FizzBuzz.DependencyInjection
             // Place any shared dependancies for FizzBuzz here
             container.AddSingleton<IFizzBuzzService, FizzBuzzService>();
             container.AddSingleton(_factory => _factory);
+            container.AddLogging();
         }
     }
 }

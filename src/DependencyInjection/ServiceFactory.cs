@@ -1,4 +1,5 @@
-﻿using FizzBuzz.DependencyInjection.Helpers;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using FizzBuzz.DependencyInjection.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,9 +27,23 @@ namespace FizzBuzz.DependencyInjection
             }
 
             RegisteredType registeredType;
+            Type[] genericTypeArguments;
+
             try
             {
-                registeredType = _settings[type];
+                if (type.GenericTypeArguments.Length > 0)
+                {
+                    if (!_settings.TryGetValue(type, out registeredType))
+                    {
+                        registeredType = _settings[type.GetGenericTypeDefinition()];
+                    }
+                    genericTypeArguments = type.GenericTypeArguments;
+                }
+                else
+                {
+                    registeredType = _settings[type];
+                    genericTypeArguments = new Type[0];
+                }
             }
             catch (KeyNotFoundException ex)
             {
@@ -50,7 +65,7 @@ namespace FizzBuzz.DependencyInjection
                     }
                 }
 
-                instance = Resolve(registeredType);
+                instance = Resolve(registeredType, genericTypeArguments);
 
                 if (registeredType.Lifetime == Lifetime.Singleton)
                 {
@@ -69,7 +84,7 @@ namespace FizzBuzz.DependencyInjection
             }
         }
 
-        private object Resolve(RegisteredType registeredType)
+        private object Resolve(RegisteredType registeredType, Type[] genericTypeArguments)
         {
             if (registeredType.HasCustomConstructor)
             {
@@ -79,7 +94,13 @@ namespace FizzBuzz.DependencyInjection
             }
             else
             {
-                var instance = _instanceFactory.CreateInstance(this, registeredType.ImplementationType);
+                Type implementation = registeredType.ImplementationType;
+                if (genericTypeArguments.Length > 0)
+                {
+                    implementation = implementation.MakeGenericType(genericTypeArguments);
+                }
+
+                var instance = _instanceFactory.CreateInstance(this, implementation);
 
                 return instance;
             }

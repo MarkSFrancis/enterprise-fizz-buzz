@@ -1,4 +1,4 @@
-﻿using FizzBuzz.DependencyInjection;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
 using Logs.Outputs;
 using System.Linq;
 

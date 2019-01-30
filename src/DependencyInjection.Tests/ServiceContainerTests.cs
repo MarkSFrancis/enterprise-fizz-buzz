@@ -1,9 +1,9 @@
-using FizzBuzz.DependencyInjection;
+using FizzBuzz.DependencyInjection.Abstractions;
 using NUnit.Framework;
 using System;
 using System.IO;
 
-namespace Tests
+namespace FizzBuzz.DependencyInjection.Tests
 {
     public class ServiceContainerTests
     {
@@ -84,11 +84,11 @@ namespace Tests
             container.AddTransient<TextReader, StreamReader>();
             container.AddSingleton<decimal>();
 
-            var settings = container.ExportSettings();
+            System.Collections.Generic.IDictionary<Type, Helpers.RegisteredType> settings = container.ExportSettings();
 
             // String
             Assert.IsTrue(settings.ContainsKey(typeof(string)));
-            var stringRegisteredType = settings[typeof(string)];
+            Helpers.RegisteredType stringRegisteredType = settings[typeof(string)];
 
             Assert.AreEqual(Lifetime.Transient, stringRegisteredType.Lifetime);
             Assert.IsFalse(stringRegisteredType.HasCustomConstructor);
@@ -96,7 +96,7 @@ namespace Tests
 
             // Stream
             Assert.IsTrue(settings.ContainsKey(typeof(Stream)));
-            var streamRegisteredType = settings[typeof(Stream)];
+            Helpers.RegisteredType streamRegisteredType = settings[typeof(Stream)];
 
             Assert.AreEqual(Lifetime.Transient, streamRegisteredType.Lifetime);
             Assert.IsTrue(streamRegisteredType.HasCustomConstructor);
@@ -105,7 +105,7 @@ namespace Tests
 
             // TextReader
             Assert.IsTrue(settings.ContainsKey(typeof(TextReader)));
-            var textReaderRegisteredType = settings[typeof(TextReader)];
+            Helpers.RegisteredType textReaderRegisteredType = settings[typeof(TextReader)];
 
             Assert.AreEqual(Lifetime.Transient, textReaderRegisteredType.Lifetime);
             Assert.IsFalse(textReaderRegisteredType.HasCustomConstructor);
@@ -113,7 +113,7 @@ namespace Tests
 
             // Decimal
             Assert.IsTrue(settings.ContainsKey(typeof(decimal)));
-            var decimalRegisteredType = settings[typeof(decimal)];
+            Helpers.RegisteredType decimalRegisteredType = settings[typeof(decimal)];
 
             Assert.AreEqual(Lifetime.Singleton, decimalRegisteredType.Lifetime);
             Assert.IsFalse(decimalRegisteredType.HasCustomConstructor);

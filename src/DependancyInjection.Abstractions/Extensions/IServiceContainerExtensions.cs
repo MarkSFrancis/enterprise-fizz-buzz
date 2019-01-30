@@ -1,9 +1,19 @@
 ﻿using System;
 
-namespace FizzBuzz.DependencyInjection
+namespace FizzBuzz.DependencyInjection.Abstractions
 {
     public static class IServiceContainerExtensions
     {
+        public static IServiceContainer Add(this IServiceContainer container, Type type, Lifetime lifetime)
+        {
+            if (container is null)
+            {
+                throw new ArgumentNullException(nameof(container));
+            }
+
+            return container.Add(type, type, lifetime);
+        }
+
         public static IServiceContainer Add<T>(this IServiceContainer container, Lifetime lifetime)
         {
             if (container is null)
@@ -59,6 +69,21 @@ namespace FizzBuzz.DependencyInjection
             return Add<T>(container, Lifetime.Transient);
         }
 
+        public static IServiceContainer AddTransient(this IServiceContainer container, Type serviceType)
+        {
+            return Add(container, serviceType, Lifetime.Transient);
+        }
+
+        public static IServiceContainer AddTransient(this IServiceContainer container, Type serviceType, Type implementationType)
+        {
+            if (container is null)
+            {
+                throw new ArgumentNullException(nameof(container));
+            }
+
+            return container.Add(serviceType, implementationType, Lifetime.Transient);
+        }
+
         public static IServiceContainer AddTransient<TService, TImplementation>(this IServiceContainer container)
             where TImplementation : TService
         {
@@ -79,6 +104,21 @@ namespace FizzBuzz.DependencyInjection
         public static IServiceContainer AddSingleton<T>(this IServiceContainer container)
         {
             return Add<T>(container, Lifetime.Singleton);
+        }
+
+        public static IServiceContainer AddSingleton<T>(this IServiceContainer container, Type serviceType)
+        {
+            return Add(container, serviceType, Lifetime.Singleton);
+        }
+
+        public static IServiceContainer AddSingleton<T>(this IServiceContainer container, Type serviceType, Type implementationType)
+        {
+            if (container is null)
+            {
+                throw new ArgumentNullException(nameof(container));
+            }
+
+            return container.Add(serviceType, implementationType, Lifetime.Singleton);
         }
 
         public static IServiceContainer AddSingleton<TService, TImplementation>(this IServiceContainer container)

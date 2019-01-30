@@ -1,4 +1,5 @@
-﻿using FizzBuzz.DependencyInjection.Helpers;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using FizzBuzz.DependencyInjection.Helpers;
 using System;
 using System.Threading.Tasks;
 

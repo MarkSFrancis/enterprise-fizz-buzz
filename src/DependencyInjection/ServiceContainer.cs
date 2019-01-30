@@ -1,4 +1,5 @@
-﻿using FizzBuzz.DependencyInjection.Helpers;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using FizzBuzz.DependencyInjection.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -13,33 +14,33 @@ namespace FizzBuzz.DependencyInjection
 
         private readonly IDictionary<Type, RegisteredType> _settings;
 
-        public IServiceContainer Add(Type service, Type implementation, Lifetime lifetime)
+        public IServiceContainer Add(Type serviceType, Type implementationType, Lifetime lifetime)
         {
-            if (service is null)
+            if (serviceType is null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(serviceType));
             }
-            if (implementation is null)
+            if (implementationType is null)
             {
-                throw new ArgumentNullException(nameof(implementation));
+                throw new ArgumentNullException(nameof(implementationType));
             }
-            if (!service.IsAssignableFrom(implementation))
+            if (!serviceType.ContainsGenericParameters && !serviceType.IsAssignableFrom(implementationType))
             {
-                throw new ArgumentException($"{nameof(implementation)} is not assignable from {nameof(service)}");
+                throw new ArgumentException($"{nameof(implementationType)} is not assignable from {nameof(serviceType)}");
             }
 
-            var settings = new RegisteredType(lifetime, implementation);
+            var settings = new RegisteredType(lifetime, implementationType);
 
-            UpdateContainerEntry(service, settings);
+            UpdateContainerEntry(serviceType, settings);
 
             return this;
         }
 
-        public IServiceContainer Add(Type service, Func<IServiceFactory, object> factory, Lifetime lifetime)
+        public IServiceContainer Add(Type serviceType, Func<IServiceFactory, object> factory, Lifetime lifetime)
         {
-            if (service is null)
+            if (serviceType is null)
             {
-                throw new ArgumentNullException(nameof(service));
+                throw new ArgumentNullException(nameof(serviceType));
             }
             if (factory is null)
             {
@@ -48,7 +49,7 @@ namespace FizzBuzz.DependencyInjection
 
             var settings = new RegisteredType(lifetime, factory);
 
-            UpdateContainerEntry(service, settings);
+            UpdateContainerEntry(serviceType, settings);
 
             return this;
         }

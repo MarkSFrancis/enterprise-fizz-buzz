@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FizzBuzz.DependencyInjection
+namespace FizzBuzz.DependencyInjection.Abstractions
 {
     public interface IServiceFactory
     {

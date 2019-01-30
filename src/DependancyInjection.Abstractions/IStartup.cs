@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace FizzBuzz.DependencyInjection
+namespace FizzBuzz.DependencyInjection.Abstractions
 {
     public interface IStartup : IDependancyInjectionSetup
     {

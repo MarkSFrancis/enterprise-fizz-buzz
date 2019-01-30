@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using System;
 
 namespace FizzBuzz.DependencyInjection.Helpers
 {

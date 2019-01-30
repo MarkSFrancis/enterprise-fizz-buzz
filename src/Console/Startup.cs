@@ -1,6 +1,5 @@
 ﻿using FizzBuzz.Console.Services;
-using FizzBuzz.DependencyInjection;
-using System;
+using FizzBuzz.DependencyInjection.Abstractions;
 using System.Threading.Tasks;
 
 namespace FizzBuzz.Console
@@ -16,7 +15,7 @@ namespace FizzBuzz.Console
 
         public Task Run(IServiceFactory factory)
         {
-            var app = factory.Get<IFizzBuzzApp>();
+            IFizzBuzzApp app = factory.Get<IFizzBuzzApp>();
 
             return app.Run();
         }

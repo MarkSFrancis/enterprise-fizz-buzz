@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
+using System.Threading.Tasks;
 
 namespace FizzBuzz.DependencyInjection.Tests.Fakes
 {
