@@ -1,0 +1,12 @@
+language: csharp
+mono:
+  - none
+
+install:
+  - cd src
+  - dotnet restore
+
+script:
+    # Build
+  - dotnet build
+  - dotnet test
