@@ -1,6 +1,11 @@
 # Enterprise FizzBuzz
 An enterprise edition of the FizzBuzz game in C#
 
+[Build Status](https://travis-ci.com/MarkSFrancis/EnterpriseFizzBuzz)
+
+![Travis Status](https://travis-ci.com/MarkSFrancis/EnterpriseFizzBuzz.svg?branch=master)
+
+
 ## FizzBuzz
 
 This core library represents the core-most parts and logic for FizzBuzz. It contains a single service: `FizzBuzzService` which can be configured via the constructor to play any variance of FizzBuzz

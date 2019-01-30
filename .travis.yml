@@ -1,6 +1,6 @@
 language: csharp
-mono:
-  - none
+mono: none
+dotnet: 2.2.103
 
 install:
   - cd src
