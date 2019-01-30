@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FizzBuzzTests.Services
+namespace FizzBuzz.Tests.Services
 {
     public class FizzBuzzServiceTests
     {
@@ -101,7 +101,7 @@ namespace FizzBuzzTests.Services
 
             var fizzBuzz = new FizzBuzzService();
 
-            var result = fizzBuzz.Play(1).Take(15);
+            IEnumerable<string> result = fizzBuzz.Play(1).Take(15);
 
             Assert.AreEqual(expected, result);
         }
@@ -118,7 +118,7 @@ namespace FizzBuzzTests.Services
 
             var fizzBuzz = new FizzBuzzService();
 
-            var result = fizzBuzz.Play(10).Take(15);
+            IEnumerable<string> result = fizzBuzz.Play(10).Take(15);
 
             Assert.AreEqual(expected, result);
         }
@@ -144,7 +144,7 @@ namespace FizzBuzzTests.Services
 
             var fizzBuzz = new FizzBuzzService();
 
-            var result = fizzBuzz.Play(1, 10);
+            IEnumerable<string> result = fizzBuzz.Play(1, 10);
 
             Assert.AreEqual(expected, result);
         }
@@ -160,7 +160,7 @@ namespace FizzBuzzTests.Services
 
             var fizzBuzz = new FizzBuzzService();
 
-            var result = fizzBuzz.Play(10, 10);
+            IEnumerable<string> result = fizzBuzz.Play(10, 10);
 
             Assert.AreEqual(expected, result);
         }
