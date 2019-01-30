@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Console", "Console
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependencyInjection", "DependencyInjection\FizzBuzz.DependencyInjection.csproj", "{6B12FC3D-3719-498A-86B0-ACD91E7228AF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependencyInjection.Tests", "DependencyInjection.Tests\FizzBuzz.DependencyInjection.Tests.csproj", "{E2AB37B0-EEA9-4B5F-AD4D-AE73FCC9E3AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6B12FC3D-3719-498A-86B0-ACD91E7228AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B12FC3D-3719-498A-86B0-ACD91E7228AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B12FC3D-3719-498A-86B0-ACD91E7228AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2AB37B0-EEA9-4B5F-AD4D-AE73FCC9E3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2AB37B0-EEA9-4B5F-AD4D-AE73FCC9E3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2AB37B0-EEA9-4B5F-AD4D-AE73FCC9E3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2AB37B0-EEA9-4B5F-AD4D-AE73FCC9E3AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
