@@ -37,7 +37,7 @@ namespace FizzBuzz.Services
                 }
                 if (s.Value is null)
                 {
-                    throw new ArgumentNullException(nameof(stringReplacementsSettings), $"{nameof(stringReplacementsSettings)} cannot have a null value for any entries");
+                    throw new ArgumentException($"{nameof(stringReplacementsSettings)} cannot have a null value for any entries", nameof(stringReplacementsSettings));
                 }
 
                 return s;

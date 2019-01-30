@@ -1,9 +1,6 @@
 ﻿using FizzBuzz.Console.Services;
 using FizzBuzz.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FizzBuzz.Console
@@ -31,14 +28,17 @@ namespace FizzBuzz.Console
                     var from = FizzBuzzConsole.GetNumberFrom();
                     var to = FizzBuzzConsole.GetNumberUpTo();
 
-                    if (from > to) continue;
+                    if (from > to)
+                    {
+                        continue;
+                    }
 
                     Console.WriteLine();
 
-                    var fizzBuzzResult = FizzBuzzService.Play(from, (to - from) + 1);
+                    IEnumerable<string> fizzBuzzResult = FizzBuzzService.Play(from, (to - from) + 1);
 
                     FizzBuzzConsole.OutputFizzBuzz(fizzBuzzResult);
-                    
+
                     Console.WriteLine();
 
                 } while (FizzBuzzConsole.PlayAgain());
