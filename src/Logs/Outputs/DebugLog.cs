@@ -1,5 +1,4 @@
-﻿using Logs.Outputs;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace FizzBuzz.Logs.Outputs
 {

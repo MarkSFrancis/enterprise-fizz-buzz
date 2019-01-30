@@ -1,4 +1,4 @@
-﻿namespace Logs.Outputs
+﻿namespace FizzBuzz.Logs.Outputs
 {
     public interface ILogOutput
     {

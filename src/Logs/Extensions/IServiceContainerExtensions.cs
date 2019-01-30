@@ -1,9 +1,8 @@
 ﻿using FizzBuzz.DependencyInjection.Abstractions;
 using FizzBuzz.Logs.Outputs;
-using Logs.Outputs;
 using System;
 
-namespace FizzBuzz.Logs.Extensions
+namespace FizzBuzz.Logs
 {
     public static class IServiceContainerExtensions
     {

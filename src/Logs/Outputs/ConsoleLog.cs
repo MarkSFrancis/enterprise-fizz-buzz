@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Logs.Outputs
+namespace FizzBuzz.Logs.Outputs
 {
     public class ConsoleLog : ILogOutput
     {

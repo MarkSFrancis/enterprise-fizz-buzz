@@ -1,4 +1,4 @@
-﻿using Logs.Outputs;
+﻿using FizzBuzz.Logs.Outputs;
 
 namespace FizzBuzz.Logs
 {

@@ -1,5 +1,5 @@
 ﻿using FizzBuzz.DependencyInjection.Abstractions;
-using Logs.Outputs;
+using FizzBuzz.Logs.Outputs;
 using System.Linq;
 
 namespace FizzBuzz.Logs
