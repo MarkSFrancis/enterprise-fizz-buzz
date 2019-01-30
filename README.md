@@ -27,6 +27,104 @@ Your `IStartup` can depend on any combination of these (including none or all).
 
 Your `IStartup` can also replace either of these items with its own instances in the `AddServices` method - just add them as if they weren't already present, and you'll overwrite the existing instances
 
+```cs
+// Sample program.cs
+internal class Program
+{
+    public static void Main()
+    {
+        var engine = new FizzBuzzEngine<Startup>();
+
+        engine.Build();
+        engine.Run();
+    }
+}
+```
+
+```cs
+// Sample startup.cs
+public class Startup : IStartup
+{
+    public void AddServices(IServiceContainer container)
+    {
+        container.AddSingleton<IConsoleIo, ConsoleIo>();
+        container.AddSingleton<IFizzBuzzConsole, FizzBuzzConsole>();
+        container.AddSingleton<IFizzBuzzApp, FizzBuzzApp>();
+    }
+
+    public Task Run(IServiceFactory factory)
+    {
+        IFizzBuzzApp app = factory.Get<IFizzBuzzApp>();
+
+        return app.Run();
+    }
+}
+```
+
+## FizzBuzz.DependencyInjection.Abstractions
+
+This library represents abstractions of DependencyInjection. Any core libraries that want to extend DependencyInjection should inherit from this, not the base DependencyInjection
+
+## FizzBuzz.Logs
+
+This is a custom logging library, which by default, logs to Console and the Debug window. You can add your own custom logging by creating a service which implements `FizzBuzz.Logs.Outputs.ILogOutput` and adding it in the configuration when calling `AddLogging` on your application's `IServiceContainer`.
+
+```cs
+// Sample output log
+public class ConsoleLog : ILogOutput
+{
+    public void WriteError(string message)
+    {
+        WriteLineInColor(message, ConsoleColor.Red);
+    }
+
+    public void WriteInfo(string message)
+    {
+        WriteLineInColor(message, ConsoleColor.White);
+    }
+
+    public void WriteTrace(string message)
+    {
+        WriteLineInColor(message, ConsoleColor.Cyan);
+    }
+
+    public void WriteWarning(string message)
+    {
+        WriteLineInColor(message, ConsoleColor.Yellow);
+    }
+
+    private void WriteLineInColor(string message, ConsoleColor color)
+    {
+        var initialColor = Console.ForegroundColor;
+
+        Console.ForegroundColor = color;
+        Console.WriteLine(message);
+
+        // Reset color
+        Console.ForegroundColor = initialColor;
+    }
+}
+```
+
+The logging container also supports local configuration to control log levels for specific areas of your code, applications, or 3rd party logs
+
+```cs
+// Sample set up (requires using FizzBuzz.Logs)
+container.AddLogging((serviceFactory, setup) =>
+{
+    // Set the default global minimum log level
+    setup.SetMinimumLogLevel(LogLevel.Trace);
+
+    // Set local log levels for specific log sources.
+    // These override the default for the relevant services
+    setup.SetMinimumLogLevel(LogLevel.Warning, "Microsoft");
+    setup.SetMinimumLogLevel(LogLevel.Warning, "System");
+
+    // Add any logging outputs for your app
+    setup.AddOutput<ConsoleLog>();
+});
+```
+
 ## FizzBuzz.Console
 
 This is a console implementation of the FizzBuzz game, with the necessary services required for console input/output.
