@@ -8,5 +8,7 @@ namespace FizzBuzz.Console.Services
         void Write(string text = "");
         void WriteLine(string text = "");
         void WriteCollection(IEnumerable<string> values, string delimiter);
+        bool YesNo();
+        void Clear();
     }
 }

@@ -1,10 +1,15 @@
-﻿namespace FizzBuzz.Console
+﻿using FizzBuzz.DependencyInjection;
+
+namespace FizzBuzz.Console
 {
     internal class Program
     {
-        private static void Main()
+        public static void Main()
         {
-            // TODO Setup DI
+            var engine = new FizzBuzzEngine<Startup>();
+
+            engine.Build();
+            engine.Run();
         }
     }
 }

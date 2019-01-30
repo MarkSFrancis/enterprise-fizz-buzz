@@ -22,7 +22,7 @@ namespace FizzBuzz.Console.Services
 
         public int GetNumberUpTo()
         {
-            Console.WriteLine("Please enter the number of values to count");
+            Console.WriteLine("Please enter the number to count up to");
             var from = Console.GetIntegerFromUser(0);
 
             return from;
@@ -31,6 +31,15 @@ namespace FizzBuzz.Console.Services
         public void OutputFizzBuzz(IEnumerable<string> sequence)
         {
             Console.WriteCollection(sequence, Environment.NewLine);
+            Console.WriteLine();
+        }
+
+        public bool PlayAgain()
+        {
+            Console.Write("Play again? (y/n): ");
+            var playAgain = Console.YesNo();
+
+            return playAgain;
         }
     }
 }

@@ -7,5 +7,6 @@ namespace FizzBuzz.Console.Services
         int GetNumberFrom();
         int GetNumberUpTo();
         void OutputFizzBuzz(IEnumerable<string> sequence);
+        bool PlayAgain();
     }
 }

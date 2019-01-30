@@ -29,7 +29,7 @@ namespace FizzBuzz.Services
 
             var replacementsInOrder = new List<KeyValuePair<int, string>>(stringReplacementsSettings.Count);
 
-            stringReplacementsSettings.Select(s =>
+            replacementsInOrder = stringReplacementsSettings.Select(s =>
             {
                 if (s.Key < 0)
                 {

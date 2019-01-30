@@ -50,6 +50,19 @@ namespace FizzBuzz.Console.Services
             }
         }
 
+        public bool YesNo()
+        {
+            ConsoleKeyInfo keyPressed;
+            do
+            {
+                keyPressed = Console.ReadKey(true);
+            } while (keyPressed.Key != ConsoleKey.Y && keyPressed.Key != ConsoleKey.N);
+
+            Console.Write(keyPressed.KeyChar);
+
+            return keyPressed.Key == ConsoleKey.Y;
+        }
+
         public int GetIntegerFromUser(int minValue = int.MinValue, int maxValue = int.MaxValue)
         {
             string lastValidationMessage = null;
@@ -74,6 +87,11 @@ namespace FizzBuzz.Console.Services
 
                 Console.WriteLine(lastValidationMessage);
             } while (true);
+        }
+
+        public void Clear()
+        {
+            Console.Clear();
         }
 
         private void ClearEnteredText(int textLength)

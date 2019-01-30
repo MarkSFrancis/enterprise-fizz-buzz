@@ -1,5 +1,6 @@
 ﻿using FizzBuzz.DependencyInjection.Helpers;
 using System;
+using System.Threading.Tasks;
 
 namespace FizzBuzz.DependencyInjection
 {
@@ -47,6 +48,13 @@ namespace FizzBuzz.DependencyInjection
 
         public void Run()
         {
+            var task = RunAsync();
+
+            task.Wait();
+        }
+
+        public Task RunAsync()
+        {
             if (appStartup is null)
             {
                 throw new InvalidOperationException($"The {nameof(FizzBuzzEngine<TStartup>)} must be built with .{nameof(Build)}() before it can be run");
@@ -55,7 +63,7 @@ namespace FizzBuzz.DependencyInjection
             var factory = GetFactory();
             var task = appStartup.Run(factory);
 
-            task.Wait();
+            return task;
         }
 
         private IServiceFactory GetFactory()
