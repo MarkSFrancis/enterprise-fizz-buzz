@@ -1,5 +1,5 @@
 ﻿using FizzBuzz.DependencyInjection.Abstractions;
-using FizzBuzz.Logs.Extensions;
+using FizzBuzz.Logs;
 using FizzBuzz.Services;
 
 namespace FizzBuzz.DependencyInjection
