@@ -8,7 +8,7 @@ namespace FizzBuzz.DependencyInjection
         {
             // Place any shared dependancies for FizzBuzz here
             container.AddSingleton<IFizzBuzzService, FizzBuzzService>();
-            container.AddSingleton<IServiceFactory>(_factory => _factory);
+            container.AddSingleton(_factory => _factory);
         }
     }
 }
