@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FizzBuzz.Logs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,12 +17,14 @@ namespace FizzBuzz.Services
             { 5, "Buzz" }
         };
 
-        public FizzBuzzService() : this(FIZZ_BUZZ_DEFAULTS)
+        public FizzBuzzService(ILogger<FizzBuzzService> logger) : this(logger, FIZZ_BUZZ_DEFAULTS)
         {
         }
 
-        public FizzBuzzService(IDictionary<int, string> stringReplacementsSettings)
+        public FizzBuzzService(ILogger<FizzBuzzService> logger, IDictionary<int, string> stringReplacementsSettings)
         {
+            Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
             if (stringReplacementsSettings is null)
             {
                 throw new ArgumentNullException(nameof(stringReplacementsSettings));
@@ -49,6 +52,7 @@ namespace FizzBuzz.Services
         }
 
         public IEnumerable<KeyValuePair<int, string>> StringReplacementsSettings { get; }
+        public ILogger<FizzBuzzService> Logger { get; }
 
         /// <summary>
         /// Replaces each number with its modulus from the <see cref="StringReplacementsSettings"/> indefinitely, starting at <paramref name="startAt"/>
@@ -61,6 +65,8 @@ namespace FizzBuzz.Services
             {
                 throw new ArgumentOutOfRangeException(nameof(startAt), $"{nameof(startAt)} cannot be less than zero");
             }
+
+            Logger.WriteInfo("Running FizzBuzz from " + startAt);
 
             while (true)
             {
@@ -85,7 +91,7 @@ namespace FizzBuzz.Services
             var hasReplacement = false;
             var replacement = new StringBuilder();
 
-            foreach (var stringReplacement in StringReplacementsSettings)
+            foreach (KeyValuePair<int, string> stringReplacement in StringReplacementsSettings)
             {
                 if (number % stringReplacement.Key == 0)
                 {

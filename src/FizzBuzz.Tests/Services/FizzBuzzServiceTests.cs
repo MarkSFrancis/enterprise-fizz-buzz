@@ -1,4 +1,5 @@
 ﻿using FizzBuzz.Services;
+using FizzBuzz.Tests.Fakes;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace FizzBuzz.Tests.Services
         [Test]
         public void New_WithEmptySettings_UsesDefaultFizzBuzzReplacements()
         {
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             CollectionAssert.IsNotEmpty(fizzBuzz.StringReplacementsSettings);
         }
@@ -30,7 +31,7 @@ namespace FizzBuzz.Tests.Services
                 { 7, "Asdf" }
             };
 
-            var fizzBuzz = new FizzBuzzService(settings);
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance, settings);
 
             CollectionAssert.AreEqual(settings, fizzBuzz.StringReplacementsSettings);
         }
@@ -44,7 +45,7 @@ namespace FizzBuzz.Tests.Services
                 { 1, "Test" }
             };
 
-            var fizzBuzz = new FizzBuzzService(settings);
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance, settings);
 
             CollectionAssert.AreEqual(settings.OrderBy(s => s.Key), fizzBuzz.StringReplacementsSettings);
         }
@@ -57,7 +58,7 @@ namespace FizzBuzz.Tests.Services
                 { -1, "Asdf" }
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new FizzBuzzService(settings));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new FizzBuzzService(EmptyLogger.Instance, settings));
         }
 
         [Test]
@@ -68,13 +69,13 @@ namespace FizzBuzz.Tests.Services
                 { 1, null }
             };
 
-            Assert.Throws<ArgumentException>(() => new FizzBuzzService(settings));
+            Assert.Throws<ArgumentException>(() => new FizzBuzzService(EmptyLogger.Instance, settings));
         }
 
         [Test]
         public void Play_FromMinus1WithNoEnd_ThrowsArgumentOutOfRangeException()
         {
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => fizzBuzz.Play(-1).First());
         }
@@ -82,7 +83,7 @@ namespace FizzBuzz.Tests.Services
         [Test]
         public void Play_From1WithNoEnd_PlaysFromStart()
         {
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             var result = fizzBuzz.Play(1).First();
 
@@ -99,7 +100,7 @@ namespace FizzBuzz.Tests.Services
                 "11", "Fizz", "13", "14", "FizzBuzz"
             };
 
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             IEnumerable<string> result = fizzBuzz.Play(1).Take(15);
 
@@ -116,7 +117,7 @@ namespace FizzBuzz.Tests.Services
                 "Buzz", "Fizz", "22", "23", "Fizz"
             };
 
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             IEnumerable<string> result = fizzBuzz.Play(10).Take(15);
 
@@ -126,7 +127,7 @@ namespace FizzBuzz.Tests.Services
         [Test]
         public void Play_From1For10Numbers_PlaysFromStart()
         {
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             var result = fizzBuzz.Play(1, 10).First();
 
@@ -142,7 +143,7 @@ namespace FizzBuzz.Tests.Services
                 "Fizz", "7", "8", "Fizz", "Buzz"
             };
 
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             IEnumerable<string> result = fizzBuzz.Play(1, 10);
 
@@ -158,7 +159,7 @@ namespace FizzBuzz.Tests.Services
                 "FizzBuzz", "16", "17", "Fizz", "19"
             };
 
-            var fizzBuzz = new FizzBuzzService();
+            var fizzBuzz = new FizzBuzzService(EmptyLogger.Instance);
 
             IEnumerable<string> result = fizzBuzz.Play(10, 10);
 
