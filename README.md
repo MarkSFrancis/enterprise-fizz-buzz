@@ -70,6 +70,20 @@ public class Startup : IStartup
 
 This library represents abstractions of DependencyInjection. Any core libraries that want to extend DependencyInjection should inherit from this, not the base DependencyInjection
 
+## FizzBuzz.DependencyInjection.Benchmarks
+
+One of the most important things with any dependency injection container is performance.
+Ths custom DI container for this project is one of the fastest available - second only to Microsoft.DependencyInjection when the most popular containers are compared against it.
+
+> Latest results are as follows:
+> * The first time is for 1,000,000 resolves of Service 1. Service 1 is a simple transient service with 0 dependencies
+> * The second is for 1,000,000 resolves of Service 2. Service 2 is a singleton service with a single dependency of Service 1
+> * The third is for 1,000,000 resolves of Service 3. Service 3 is a transient service with a single dependency of Service 2
+>
+> ![Results](img/benchmarks.png)
+
+Please note that the benchmarked times **do not** include the time it takes to register dependencies, only resolving them.
+
 ## FizzBuzz.Logs
 
 This is a custom logging library, which by default, logs to Console and the Debug window. You can add your own custom logging by creating a service which implements `FizzBuzz.Logs.Outputs.ILogOutput` and adding it in the configuration when calling `AddLogging` on your application's `IServiceContainer`.
@@ -141,3 +155,19 @@ This is a console implementation of the FizzBuzz game, with the necessary servic
 `IFizzBuzzConsole` manages FizzBuzz specific input and output to the console
 
 `IConsoleIo` manages all console input and output
+
+## FizzBuzz.Api
+
+This is an ASP NET Core implementation of the FizzBuzz game, with any route resolving to the FizzBuzz game.
+
+The query string variable `from` specifies the range start for FizzBuzz (inclusive), and defaults to `1`. The query string variable `total` specifies how many numbers to retrieve, and defaults to `20`
+
+### Examples:
+
+> `https://localhost:44306/?from=10&total=100`
+>
+> Would retrieve: `Buzz, 11, Fizz, 13, 14`
+
+> `https://localhost:44306/`
+>
+> Would retrieve: `1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, 16, 17, Fizz, 19, Buzz`
