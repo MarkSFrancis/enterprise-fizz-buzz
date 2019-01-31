@@ -1,6 +1,5 @@
 ﻿using FizzBuzz.Console.Services;
 using FizzBuzz.DependencyInjection.Abstractions;
-using FizzBuzz.Logs;
 using System.Threading.Tasks;
 
 namespace FizzBuzz.Console
