@@ -164,7 +164,7 @@ The query string variable `from` specifies the range start for FizzBuzz (inclusi
 
 ### Examples:
 
-> `https://localhost:44306/?from=10&total=100`
+> `https://localhost:44306/?from=10&total=5`
 >
 > Would retrieve: `Buzz, 11, Fizz, 13, 14`
 
