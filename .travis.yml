@@ -2,11 +2,9 @@ language: csharp
 mono: none
 dotnet: 2.2
 
-install:
-  - cd src
-  - dotnet restore
-
 script:
     # Build
+  - cd src
+  - dotnet restore
   - dotnet build
   - dotnet test
