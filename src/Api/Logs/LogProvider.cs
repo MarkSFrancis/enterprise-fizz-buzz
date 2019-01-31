@@ -1,5 +1,4 @@
-﻿using FizzBuzz.DependencyInjection.Abstractions;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace FizzBuzz.Api.Logs
 {

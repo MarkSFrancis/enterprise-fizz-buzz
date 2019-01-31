@@ -1,5 +1,4 @@
-﻿using FizzBuzz.DependencyInjection.Abstractions;
-using FizzBuzz.Logs.Outputs;
+﻿using FizzBuzz.Logs.Outputs;
 using System.Collections.Generic;
 
 namespace FizzBuzz.Logs

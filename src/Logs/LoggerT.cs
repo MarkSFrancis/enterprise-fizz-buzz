@@ -1,6 +1,4 @@
-﻿using FizzBuzz.DependencyInjection.Abstractions;
-
-namespace FizzBuzz.Logs
+﻿namespace FizzBuzz.Logs
 {
     public class Logger<TSource> : Logger, ILogger<TSource>
     {

@@ -1,9 +1,8 @@
-﻿using FizzBuzz.Services;
+﻿using FizzBuzz.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace FizzBuzz.Api
 {
@@ -15,10 +14,17 @@ namespace FizzBuzz.Api
         {
             services.AddFizzBuzz();
             services.AddFizzBuzzLogging();
+            services.AddTransient<IFizzBuzzQueryReader, FizzBuzzQueryReader>();
+            services.AddTransient<IJsonSerializerService, JsonSerializerService>();
+            services.AddTransient<IFizzBuzzRequestHandler, FizzBuzzRequestHandler>();
+            services.AddTransient<IFizzBuzzResponseHandler, FizzBuzzResponseHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IFizzBuzzService fizzBuzzService)
+        public void Configure(IApplicationBuilder app,
+                              IHostingEnvironment env,
+                              IFizzBuzzRequestHandler requestHandler,
+                              IFizzBuzzResponseHandler responseHandler)
         {
             if (env.IsDevelopment())
             {
@@ -27,28 +33,9 @@ namespace FizzBuzz.Api
 
             app.Run(async (context) =>
             {
-                var query = context.Request.Query;
+                var result = requestHandler.HandleRequest(context.Request);
 
-                bool hasFrom = false, hasTotal = false;
-                int from = 1, total = 20;
-
-                if (query != null)
-                {
-                    hasFrom = int.TryParse(query["from"], out from);
-                    hasTotal = int.TryParse(query["total"], out total);
-                }
-
-                if (!hasFrom)
-                {
-                    from = 1;
-                }
-                if (!hasTotal)
-                {
-                    total = 20;
-                }
-
-                IEnumerable<string> result = fizzBuzzService.Play(from, total);
-                await context.Response.WriteAsync(string.Join(", ", result));
+                await responseHandler.WriteResponse(context.Response, result);
             });
         }
     }
