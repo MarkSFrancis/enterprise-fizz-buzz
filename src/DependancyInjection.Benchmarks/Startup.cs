@@ -45,6 +45,15 @@ namespace FizzBuzz.DependencyInjection.Benchmarks
             }
             Console.WriteLine();
 
+            TimeSpan[] castleWindsorContainerTimes = new CastleWindsorBenchmark().Run(factory, executions);
+
+            Console.WriteLine("Castle Windsor Container: ");
+            foreach (TimeSpan time in castleWindsorContainerTimes)
+            {
+                Console.WriteLine(time);
+            }
+            Console.WriteLine();
+
             TimeSpan[] newGenericTimes = new NewGenericBenchmark<GenericService<string>>().Run(factory, executions);
 
             Console.WriteLine("New Generic: ");

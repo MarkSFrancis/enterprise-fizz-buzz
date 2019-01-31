@@ -1,4 +1,6 @@
-﻿namespace FizzBuzz.DependencyInjection.Benchmarks.Fakes.Services
+﻿using Unity;
+
+namespace FizzBuzz.DependencyInjection.Benchmarks.Fakes.Services
 {
     public class ComplexService : IComplexService
     {
