@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using FizzBuzz.DependencyInjection.Abstractions;
 
-namespace FizzBuzz.DependencyInjection.Benchmarks.FizzBuzz.DependencyInjection.Benchmarks
+namespace FizzBuzz.DependencyInjection.Benchmarks
 {
     public class NewGenericBenchmark<T> : IBenchmark where T : new()
     {

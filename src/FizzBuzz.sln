@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Logs", "Logs\FizzB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Tests", "FizzBuzz.Tests\FizzBuzz.Tests.csproj", "{6E62C0C0-BDFD-4259-A30A-9CEFBA184FB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependancyInjection.Abstractions", "DependancyInjection.Abstractions\FizzBuzz.DependancyInjection.Abstractions.csproj", "{C6C4F122-CAC4-41A5-B411-7FB2D2E7581E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependencyInjection.Abstractions", "DependancyInjection.Abstractions\FizzBuzz.DependencyInjection.Abstractions.csproj", "{C6C4F122-CAC4-41A5-B411-7FB2D2E7581E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependancyInjection.Benchmarks", "DependancyInjection.Benchmarks\FizzBuzz.DependancyInjection.Benchmarks.csproj", "{48D0371D-3F6D-4752-BCA0-46BCA6DC9D1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.DependencyInjection.Benchmarks", "DependancyInjection.Benchmarks\FizzBuzz.DependencyInjection.Benchmarks.csproj", "{48D0371D-3F6D-4752-BCA0-46BCA6DC9D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzz.Api", "Api\FizzBuzz.Api.csproj", "{1D989717-D6BD-42E5-B3DF-CEA00B064AE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzBuzz.Api", "Api\FizzBuzz.Api.csproj", "{1D989717-D6BD-42E5-B3DF-CEA00B064AE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DependancyInjection.Abstractions\FizzBuzz.DependancyInjection.Abstractions.csproj" />
+    <ProjectReference Include="..\DependancyInjection.Abstractions\FizzBuzz.DependencyInjection.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using FizzBuzz.DependencyInjection.Abstractions;
 using System;
 using System.Diagnostics;
 
-namespace FizzBuzz.DependencyInjection.Benchmarks.FizzBuzz.DependencyInjection.Benchmarks
+namespace FizzBuzz.DependencyInjection.Benchmarks
 {
     public class NewBenchmark : IBenchmark
     {

@@ -4,7 +4,7 @@ using FizzBuzz.Services;
 
 namespace FizzBuzz.DependencyInjection
 {
-    internal class InternalStartup : IDependancyInjectionSetup
+    internal class InternalStartup : IDependencyInjectionSetup
     {
         public void AddServices(IServiceContainer container)
         {

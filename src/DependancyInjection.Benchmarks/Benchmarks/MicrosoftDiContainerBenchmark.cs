@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics;
 
-namespace FizzBuzz.DependencyInjection.Benchmarks.FizzBuzz.DependencyInjection.Benchmarks
+namespace FizzBuzz.DependencyInjection.Benchmarks
 {
     public class MicrosoftDiContainerBenchmark : IBenchmark
     {

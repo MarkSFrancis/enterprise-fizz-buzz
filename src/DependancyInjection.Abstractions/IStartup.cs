@@ -2,7 +2,7 @@
 
 namespace FizzBuzz.DependencyInjection.Abstractions
 {
-    public interface IStartup : IDependancyInjectionSetup
+    public interface IStartup : IDependencyInjectionSetup
     {
         Task Run(IServiceFactory factory);
     }

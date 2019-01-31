@@ -8,7 +8,7 @@ namespace FizzBuzz.DependencyInjection
     public class FizzBuzzEngine<TStartup> where TStartup : IStartup
     {
         private readonly ServiceContainer _serviceContainer;
-        private readonly IDependancyInjectionSetup _internalStartup;
+        private readonly IDependencyInjectionSetup _internalStartup;
         private readonly TStartup _startupInstance;
         private IStartup appStartup;
 

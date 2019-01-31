@@ -1,7 +1,7 @@
 ﻿using System;
 using FizzBuzz.DependencyInjection.Abstractions;
 
-namespace FizzBuzz.DependencyInjection.Benchmarks.FizzBuzz.DependencyInjection.Benchmarks
+namespace FizzBuzz.DependencyInjection.Benchmarks
 {
     public interface IBenchmark
     {

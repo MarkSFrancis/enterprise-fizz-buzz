@@ -1,6 +1,6 @@
 ﻿namespace FizzBuzz.DependencyInjection.Abstractions
 {
-    public interface IDependancyInjectionSetup
+    public interface IDependencyInjectionSetup
     {
         void AddServices(IServiceContainer container);
     }

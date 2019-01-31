@@ -1,6 +1,5 @@
-﻿using FizzBuzz.DependencyInjection.Benchmarks.FizzBuzz.DependencyInjection.Benchmarks;
+﻿using FizzBuzz.DependencyInjection.Abstractions;
 using FizzBuzz.DependencyInjection.Benchmarks.Fakes.Services;
-using FizzBuzz.DependencyInjection.Abstractions;
 using System;
 using System.Threading.Tasks;
 
@@ -19,37 +18,46 @@ namespace FizzBuzz.DependencyInjection.Benchmarks
         {
             var executions = 1000000;
 
-            var customContainerTimes = new CustomDiContainerBenchmark().Run(factory, executions);
+            TimeSpan[] customContainerTimes = new CustomDiContainerBenchmark().Run(factory, executions);
 
             Console.WriteLine("Custom Container: ");
-            foreach (var time in customContainerTimes)
+            foreach (TimeSpan time in customContainerTimes)
             {
                 Console.WriteLine(time);
             }
             Console.WriteLine();
 
-            var microsoftContainerTimes = new MicrosoftDiContainerBenchmark().Run(factory, executions);
+            TimeSpan[] microsoftContainerTimes = new MicrosoftDiContainerBenchmark().Run(factory, executions);
 
             Console.WriteLine("Microsoft Container: ");
-            foreach (var time in microsoftContainerTimes)
+            foreach (TimeSpan time in microsoftContainerTimes)
             {
                 Console.WriteLine(time);
             }
             Console.WriteLine();
 
-            var newGenericTimes = new NewGenericBenchmark<GenericService<string>>().Run(factory, executions);
+            TimeSpan[] ninjectContainerTimes = new NinjectDiContainerBenchmarks().Run(factory, executions);
+
+            Console.WriteLine("Ninject Container: ");
+            foreach (TimeSpan time in ninjectContainerTimes)
+            {
+                Console.WriteLine(time);
+            }
+            Console.WriteLine();
+
+            TimeSpan[] newGenericTimes = new NewGenericBenchmark<GenericService<string>>().Run(factory, executions);
 
             Console.WriteLine("New Generic: ");
-            foreach (var time in newGenericTimes)
+            foreach (TimeSpan time in newGenericTimes)
             {
                 Console.WriteLine(time);
             }
             Console.WriteLine();
 
-            var newTimes = new NewBenchmark().Run(factory, executions);
+            TimeSpan[] newTimes = new NewBenchmark().Run(factory, executions);
 
             Console.WriteLine("New: ");
-            foreach (var time in newTimes)
+            foreach (TimeSpan time in newTimes)
             {
                 Console.WriteLine(time);
             }

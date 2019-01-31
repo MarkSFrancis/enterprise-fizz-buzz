@@ -41,13 +41,13 @@ namespace FizzBuzz.DependencyInjection.Tests
         }
 
         [Test]
-        public void Get_UnresolvableDependancy_ThrowsKeyNotFoundException()
+        public void Get_UnresolvableDependency_ThrowsKeyNotFoundException()
         {
             Assert.Throws<KeyNotFoundException>(() => DefaultFactory.Get<long>());
         }
 
         [Test]
-        public void Get_ResolvableDependancy_GetsDependancy()
+        public void Get_ResolvableDependency_GetsDependency()
         {
             var container = new ServiceContainer();
             container.AddTransient<decimal>();
@@ -60,7 +60,7 @@ namespace FizzBuzz.DependencyInjection.Tests
         }
 
         [Test]
-        public void Get_BasicService_GetsDependancy()
+        public void Get_BasicService_GetsDependency()
         {
             var instance = DefaultFactory.Get<IBasicService>();
 
@@ -68,7 +68,7 @@ namespace FizzBuzz.DependencyInjection.Tests
         }
 
         [Test]
-        public void Get_MediumComplexityService_GetsDependancy()
+        public void Get_MediumComplexityService_GetsDependency()
         {
             var instance = DefaultFactory.Get<IMediumComplexityService>();
 
@@ -76,7 +76,7 @@ namespace FizzBuzz.DependencyInjection.Tests
         }
 
         [Test]
-        public void Get_ComplexService_GetsDependancy()
+        public void Get_ComplexService_GetsDependency()
         {
             var instance = DefaultFactory.Get<IComplexService>();
 
