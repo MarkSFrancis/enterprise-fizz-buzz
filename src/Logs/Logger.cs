@@ -1,6 +1,6 @@
 ﻿using FizzBuzz.DependencyInjection.Abstractions;
 using FizzBuzz.Logs.Outputs;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace FizzBuzz.Logs
 {
@@ -9,17 +9,15 @@ namespace FizzBuzz.Logs
         public string Source { get; set; }
 
         private ILoggerFactory LogFactory { get; set; }
-        public IServiceFactory ServiceFactory { get; }
 
-        public Logger(ILoggerFactory logFactory, IServiceFactory serviceFactory)
+        public Logger(ILoggerFactory logFactory)
         {
             Source = null;
             LogFactory = logFactory;
-            ServiceFactory = serviceFactory;
         }
 
-        public Logger(ILoggerFactory logFactory, IServiceFactory serviceFactory, string source)
-            : this(logFactory, serviceFactory)
+        public Logger(ILoggerFactory logFactory, string source)
+            : this(logFactory)
         {
             Source = source;
         }
@@ -31,7 +29,7 @@ namespace FizzBuzz.Logs
                 return;
             }
 
-            System.Collections.Generic.IEnumerable<ILogOutput> outputs = LogFactory.LogOutputs.Select(outputType => (ILogOutput)ServiceFactory.Get(outputType));
+            IEnumerable<ILogOutput> outputs = LogFactory.LogOutputs;
 
             switch (level)
             {

@@ -1,39 +1,29 @@
-﻿using FizzBuzz.DependencyInjection.Abstractions;
-using FizzBuzz.Logs.Outputs;
-using System;
+﻿using FizzBuzz.Logs.Outputs;
 using System.Collections.Generic;
 
 namespace FizzBuzz.Logs
 {
     internal class LoggerFactory : ILoggerFactory, ILoggerSetup
     {
-        public LoggerFactory(IServiceContainer serviceContainer)
+        public LoggerFactory()
         {
-            _logOutputs = new HashSet<Type>();
+            _logOutputs = new List<ILogOutput>();
             _sourceLogLevels = new Dictionary<string, LogLevel>();
-            ServiceContainer = serviceContainer;
         }
 
         private readonly IDictionary<string, LogLevel> _sourceLogLevels;
 
-        private readonly HashSet<Type> _logOutputs;
+        private readonly List<ILogOutput> _logOutputs;
 
-        public IEnumerable<Type> LogOutputs => _logOutputs;
+        public IEnumerable<ILogOutput> LogOutputs => _logOutputs;
 
         public LogLevel DefaultLogLevel { get; protected set; }
 
         public IEnumerable<KeyValuePair<string, LogLevel>> SourceLogLevels => _sourceLogLevels;
 
-        public IServiceContainer ServiceContainer { get; }
-
-        public ILoggerSetup AddOutput<T>() where T : ILogOutput
+        public ILoggerSetup AddOutput<T>() where T : ILogOutput, new()
         {
-            if (!_logOutputs.Contains(typeof(T)))
-            {
-                _logOutputs.Add(typeof(T));
-            }
-
-            ServiceContainer.AddSingleton<T>();
+            _logOutputs.Add(new T());
 
             return this;
         }

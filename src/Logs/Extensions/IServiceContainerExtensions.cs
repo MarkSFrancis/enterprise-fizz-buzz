@@ -8,7 +8,7 @@ namespace FizzBuzz.Logs
     {
         public static IServiceContainer AddLogging(this IServiceContainer serviceContainer, LogLevel minimumLogLevel = LogLevel.Info)
         {
-            serviceContainer.AddLogging((container, setup) =>
+            serviceContainer.AddLogging(setup =>
             {
                 setup.AddOutput<DebugLog>();
                 setup.AddOutput<ConsoleLog>();
@@ -18,12 +18,12 @@ namespace FizzBuzz.Logs
             return serviceContainer;
         }
 
-        public static IServiceContainer AddLogging(this IServiceContainer serviceContainer, Action<IServiceFactory, ILoggerSetup> configuration)
+        public static IServiceContainer AddLogging(this IServiceContainer serviceContainer, Action<ILoggerSetup> configuration)
         {
             serviceContainer.AddSingleton<LoggerFactory, LoggerFactory>(serviceFactory =>
             {
-                var loggerFactory = new LoggerFactory(serviceContainer);
-                configuration(serviceFactory, loggerFactory);
+                var loggerFactory = new LoggerFactory();
+                configuration(loggerFactory);
 
                 return loggerFactory;
             });
