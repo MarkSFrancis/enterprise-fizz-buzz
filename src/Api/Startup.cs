@@ -1,10 +1,9 @@
-﻿using FizzBuzz.Logs;
-using FizzBuzz.Logs.Outputs;
-using FizzBuzz.Services;
+﻿using FizzBuzz.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace FizzBuzz.Api
 {
@@ -28,8 +27,28 @@ namespace FizzBuzz.Api
 
             app.Run(async (context) =>
             {
-                var result = fizzBuzzService.Play(1, 100);
-                await context.Response.WriteAsync(string.Join('\n', result));
+                var query = context.Request.Query;
+
+                bool hasFrom = false, hasTotal = false;
+                int from = 1, total = 20;
+
+                if (query != null)
+                {
+                    hasFrom = int.TryParse(query["from"], out from);
+                    hasTotal = int.TryParse(query["total"], out total);
+                }
+
+                if (!hasFrom)
+                {
+                    from = 1;
+                }
+                if (!hasTotal)
+                {
+                    total = 20;
+                }
+
+                IEnumerable<string> result = fizzBuzzService.Play(from, total);
+                await context.Response.WriteAsync(string.Join(", ", result));
             });
         }
     }
