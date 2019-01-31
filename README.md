@@ -162,6 +162,8 @@ This is an ASP NET Core implementation of the FizzBuzz game, with any route reso
 
 The query string variable `from` specifies the range start for FizzBuzz (inclusive), and defaults to `1`. The query string variable `total` specifies how many numbers to retrieve, and defaults to `20`
 
+All returned data is JSON formatted (string array)
+
 ### Examples:
 
 > `https://localhost:44306/?from=10&total=5`
